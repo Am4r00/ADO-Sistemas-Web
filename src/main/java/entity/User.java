@@ -1,19 +1,25 @@
 package entity;
 
+import org.hibernate.validator.constraints.UUID;
+
 public class User {
-    private long id;
+
+    @UUID
+    private String id;
     private String nome;
     private String cpf;
 
     public User() {
     }
 
-    public long getId() {
-        return id;
+    public User(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.id = java.util.UUID.randomUUID().toString();
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getId() {
+        return id;
     }
 
     public String getNome() {

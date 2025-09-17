@@ -2,40 +2,58 @@ package service;
 
 import DTO.SingUpUser;
 import entity.User;
+import org.hibernate.validator.internal.constraintvalidators.bv.AssertTrueValidator;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserImplementeService implements UserService{
 
-    private final AtomicLong seq = new AtomicLong(1);
-    private Set<User> listaUsers = new HashSet<>() {
+    private final AssertTrueValidator assertTrueValidator;
+    private List<User> listaUsers = new ArrayList<>();
+
+    public UserImplementeService(AssertTrueValidator assertTrueValidator) {
+        this.assertTrueValidator = assertTrueValidator;
     }
+
     @Override
     public void saveUser(SingUpUser user) {
         User user1 = new User();
         user1.setNome(user.getName());
         user1.setCpf(user.getCpf());
-        user1.setId(seq.getAndIncrement());
         listaUsers.add(user1);
     }
 
     @Override
-    public void updateUser(long id, User user) {
-
+    public boolean updateUser(String id, User user) {
+        boolean aux = false;
+        for(int i=0; i<=listaUsers.size(); i++){
+            if(listaUsers.get(i).getId().equals(user.getId())){
+                listaUsers.add(i, user);
+                aux = true;
+                return aux;
+            }
+        }
+        return aux;
     }
 
     @Override
-    public void findAll() {
-
+    public List<User> findAll() {
+       return listaUsers;
     }
 
     @Override
-    public void deleteUser(long id) {
-
+    public boolean deleteUser(String id) {
+        boolean aux = false;
+        for(int i=0; i<=listaUsers.size(); i++){
+            if(listaUsers.get(i).getId().equals(id)){
+                listaUsers.remove(i);
+                aux = true;
+                return aux;
+            }
+        }
+        return aux;
     }
 }

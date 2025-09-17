@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
 
     void saveUser(SingUpUser user);
-    SingUpUser updateUser(long id,User user);
-    List<SingUpUser> findAll();
-    void deleteUser(long id);
+    boolean updateUser(String id,User user);
+    List<User> findAll();
+    boolean deleteUser(String id);
 }
