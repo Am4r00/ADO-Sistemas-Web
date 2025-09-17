@@ -10,6 +10,7 @@ public class User {
     private String cpf;
 
     public User() {
+        this.id = java.util.UUID.randomUUID().toString();
     }
 
     public User(String nome, String cpf) {

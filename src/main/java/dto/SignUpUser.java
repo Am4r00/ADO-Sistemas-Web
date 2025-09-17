@@ -1,8 +1,8 @@
-package DTO;
+package dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class SingUpUser {
+public class SignUpUser {
     @NotBlank
     private String name;
     @NotBlank

@@ -1,6 +1,6 @@
 package service;
 
-import DTO.SingUpUser;
+import dto.SingUpUser;
 import entity.User;
 
 import java.util.List;
