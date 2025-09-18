@@ -1,4 +1,4 @@
-package dto;
+package com.meuapp.ado.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

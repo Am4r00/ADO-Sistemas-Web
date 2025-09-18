@@ -1,21 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>DashBoard</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Cpf</th>
-        </tr>
 
-        <tr>
+<h1>Dashboard</h1>
 
+<div th:if="${msg}" th:text="${msg}" style="color: green; margin-bottom: 10px;"></div>
+<div th:if="${msgErro}" th:text="${msgErro}" style="color: red; margin-bottom: 10px;"></div>
 
-        </tr>
-    </table>
+<table border="1" cellpadding="6" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th style="width:160px;">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(users)}">
+        <td colspan="3">Nenhum usuário cadastrado.</td>
+    </tr>
+
+    <tr th:each="u : ${users}">
+        <td th:text="${u.nome}">nome</td>
+        <td th:text="${u.cpf}">cpf</td>
+        <td>
+            <a th:href="@{/users/{id}/edit(id=${u.id})}">Editar</a>
+
+            <form th:action="@{/users/{id}/delete(id=${u.id})}" method="post" style="display:inline; margin-left:10px;">
+                <button type="submit" onclick="return confirm('Excluir este usuário?')">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a th:href="@{/}">Cadastrar novo usuário</a>
 
 </body>
 </html>

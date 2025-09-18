@@ -1,4 +1,4 @@
-package entity;
+package com.meuapp.ado.entity;
 
 import org.hibernate.validator.constraints.UUID;
 

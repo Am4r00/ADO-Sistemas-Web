@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Formulário</title>
 </head>
 <body>
 
-<form action="/cadastrar" method="post">
+<h1 th:text="${action} == '/cadastrar' ? 'Cadastrar Usuário' : 'Editar Usuário'">Formulário</h1>
 
-    <p><b>Name:</b></p>
-    <input name="nome" type="text" required> <br>
-    <p><b>Cpf:</b></p>
-    <input name="cpf" type="cpf" required> <br>
-    <button type="submit">Cadastrar user</button>
+<div th:if="${msg}" th:text="${msg}" style="color: green; margin-bottom: 10px;"></div>
+<div th:if="${msgErro}" th:text="${msgErro}" style="color: red; margin-bottom: 10px;"></div>
+
+<form th:action="${action}" th:object="${form}" method="post">
+    <p><b>Nome:</b></p>
+    <input th:field="*{name}" type="text" required>
+
+    <p><b>CPF:</b></p>
+    <input th:field="*{cpf}" type="text" required>
+
+    <br><br>
+    <button type="submit" th:text="${action} == '/cadastrar' ? 'Cadastrar' : 'Salvar alterações'">Salvar</button>
+    <a th:href="@{/dashboard}" style="margin-left:10px;">Ir para Dashboard</a>
 </form>
 
 </body>
