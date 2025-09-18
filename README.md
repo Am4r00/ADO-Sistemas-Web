@@ -41,8 +41,6 @@ A aplicação sobe em: http://localhost:8080
 
 Dica de dev (opcional): desative cache do Thymeleaf em src/main/resources/application.properties:
 
-ini
-Copiar código
 spring.thymeleaf.cache=false
 spring.application.name=AdoSistemas
 🖥️ Páginas (Web)
@@ -75,8 +73,7 @@ PUT	/{id}	{ "name": "...", "cpf":"..." }	200 OK | 404
 DELETE	/{id}	—	204 No Content | 404
 
 Exemplos curl
-bash
-Copiar código
+
 # Criar
 curl -i -X POST http://localhost:8080/api/users \
   -H "Content-Type: application/json" \
@@ -96,8 +93,6 @@ curl -i -X PUT http://localhost:8080/api/users/{id} \
 # Excluir
 curl -i -X DELETE http://localhost:8080/api/users/{id}
 🗂️ Estrutura (resumo)
-bash
-Copiar código
 src/main/java/com/meuapp/ado/
 ├─ AdoSistemasApplication.java
 ├─ controller/
